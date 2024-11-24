@@ -44,3 +44,13 @@ make -f src/Makefile src/libc
 # Build and Install -- Download if directory does not exist
 make -f src/Makefile usr/lib/libc.so
 ```
+
+# Download and Install coreutils
+
+```sh
+# Download
+make -f src/Makefile src/coreutils
+
+# Install
+make -f src/Makefile usr/bin/sh
+```

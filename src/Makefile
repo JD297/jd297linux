@@ -36,6 +36,12 @@ src/libc:
 $(USRLIBDIR)/libc.so: usr $(USRINCLUDEDIR)/linux src/libc
 	cd src/libc && make install PREFIX=../../$(USRDIR)
 
+src/coreutils:
+	cd src/ && git clone git@github.com:jd297/coreutils
+
+$(USRBINDIR)/sh: $(USRLIBDIR)/libc.so src/coreutils
+	cd src/coreutils && make install PREFIX=../../$(USRDIR)
+
 /: usr usr/local tmp mnt dev etc root proc var bin sbin lib
 
 usr:
