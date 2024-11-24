@@ -20,8 +20,19 @@ make -f src/Makefile clean
 
 ```sh
 # SEE
+#	(Download and Install (headers) linux)
 #	(Download, Build and Install libc)
 make -f src/Makefile
+```
+
+### Download and Install (headers) linux
+
+```sh
+# Download
+make -f src/Makefile src/linux
+
+# Install (headers)
+make -f src/Makefile usr/include/linux
 ```
 
 ### Download, Build and Install libc

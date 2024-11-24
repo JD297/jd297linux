@@ -24,10 +24,16 @@ VARDIR		= $(PREFIX)/var
 
 all: $(USRLIBDIR)/libc.so
 
+src/linux:
+	cd src/ && git clone --depth 1 git@github.com:torvalds/linux
+
+$(USRINCLUDEDIR)/linux: src/linux
+	cd src/linux && make headers_install ARCH=x86_64 INSTALL_HDR_PATH=../../$(USRDIR)
+
 src/libc:
 	cd src/ && git clone https://github.com/JD297/libc.git
 
-$(USRLIBDIR)/libc.so: usr src/libc
+$(USRLIBDIR)/libc.so: usr $(USRINCLUDEDIR)/linux src/libc
 	cd src/libc && make install PREFIX=../../$(USRDIR)
 
 /: usr usr/local tmp mnt dev etc root proc var bin sbin lib
