@@ -20,19 +20,29 @@ make -f src/Makefile clean
 
 ```sh
 # SEE
-#	(Download and Install (headers) linux)
+#	(Download, Build and Install linux)
 #	(Download, Build and Install libc)
+#	(Download, Build and Install libasm)
+#	(Download, Build and Install coreutils)
+#	(Download, Build and Install edt)
 make -f src/Makefile
 ```
 
-### Download and Install (headers) linux
+### Download, Configure, Build and Install linux
 
 ```sh
 # Download
 make -f src/Makefile src/linux
 
-# Install (headers)
+# Install (kernel-headers) -- Download if directory does not exist
 make -f src/Makefile usr/include/linux
+
+# Configure (kernel) -- Download if directory does not exist
+
+make -f src/Makefile src/linux/.config
+
+# Build and Install (kernel) -- Download and Configure if directory does not exist
+make -f src/Makefile boot/bzImage
 ```
 
 ### Download, Build and Install libc
@@ -42,15 +52,35 @@ make -f src/Makefile usr/include/linux
 make -f src/Makefile src/libc
 
 # Build and Install -- Download if directory does not exist
-make -f src/Makefile usr/lib/libc.so
+make -f src/Makefile usr/lib/libc.a
 ```
 
-# Download and Install coreutils
+### Download, Build and Install libasm
+
+```sh
+# Download
+make -f src/Makefile src/libasm
+
+# Build and Install -- Download if directory does not exist
+make -f src/Makefile usr/lib/libasm.a
+```
+
+### Download, Build and Install coreutils
 
 ```sh
 # Download
 make -f src/Makefile src/coreutils
 
-# Install
-make -f src/Makefile usr/bin/sh
+# Build and Install -- Download if directory does not exist
+make -f src/Makefile usr/bin/coreutils
+```
+
+### Download, Build and Install edt
+
+```sh
+# Download
+make -f src/Makefile src/edt
+
+# Build and Install -- Download if directory does not exist
+make -f src/Makefile usr/bin/edt
 ```
